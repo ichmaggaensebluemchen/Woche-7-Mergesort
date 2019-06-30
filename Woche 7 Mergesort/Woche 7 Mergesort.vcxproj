@@ -118,10 +118,10 @@
     <ClCompile Include="mergesort.c" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\..\Downloads\listn_000010.txt" />
-    <Text Include="..\..\..\..\Downloads\listn_000100.txt" />
-    <Text Include="..\..\..\..\Downloads\listn_010000.txt" />
-    <Text Include="..\..\..\..\Downloads\listn_100000.txt" />
+    <Text Include="listn_000010.txt" />
+    <Text Include="listn_000100.txt" />
+    <Text Include="listn_001000.txt" />
+    <Text Include="listn_100000.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

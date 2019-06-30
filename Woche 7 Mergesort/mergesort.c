@@ -5,18 +5,20 @@
 #pragma warning(disable : 4996)
 
 void mergesort(long *, int, int);
-long long GetUSecClock();
+void do_sleep(clock_t);
+unsigned long long GetUSecClock();
 
 int main(int argc, char *argv[])
 {
 	FILE *in = stdin;										//File auf Tastatureingabe setzen
-	long zahlenArr[100000] = { 0 };							//Array, in dem Zahlen abgespeichert werden
+	long zahlenArr[100001] = { 0 };							//Array, in dem Zahlen abgespeichert werden
 	int arrPos = 0;											//aktuelle Position im Array
 	char temp[80];											//Zwischenspeicher
 
-	clock_t start, ende;
-	float dauer;
-	long long time1, time2;
+	//clock_t start, ende;
+	//long long dauer;
+	long long startzeit, endzeit;
+	double dauer;
 
 	if (argc == 2)
 	{
@@ -48,12 +50,10 @@ int main(int argc, char *argv[])
 	}
 
 	//mergesort aufrufen
-	start = clock();
-	time1 = GetUSecClock();
+	startzeit = GetUSecClock();
 	mergesort(zahlenArr, 0, arrPos);
-	time2 = GetUSecClock();
-	ende = clock();
-	dauer = (ende - start) / CLOCKS_PER_SEC;
+	endzeit = GetUSecClock();
+	dauer = (double)((endzeit - startzeit));
 
 	//Ausgabe des sortieren Arrays (die ersten 10 Zahlen)
 	printf("\n\nAusgabe des sortieren Arrays\n");
@@ -63,8 +63,8 @@ int main(int argc, char *argv[])
 		printf("%i\n", zahlenArr[i]);
 	}
 
-	printf("Die benoetigte Zeit zum Sortieren: %f Sekunden\n", dauer);
-	printf("Die benoetigte Zeit zum Sortieren: %llu Mikrosekunden\n", time1-time2);
+	//printf("Die benoetigte Zeit zum Sortieren: %2.6f Sekunden\n", dauer / CLOCKS_PER_SEC);
+	printf("Die benoetigte Zeit zum Sortieren: %llu Mikrosekunden\n", (endzeit-startzeit) * 1000000000 / CLOCKS_PER_SEC );
 	system("Pause");
 	exit(EXIT_SUCCESS);
 }
@@ -115,8 +115,8 @@ void mergesort(long *zahlenArr, int start, int anzahl)
 	}
 }
 
-long long GetUSecClock()
+unsigned long long GetUSecClock()
 {
 	clock_t cpu_time = clock();
-	return (long long)cpu_time*CLOCKS_PER_SEC;
+	return (unsigned long long)cpu_time;
 }
